@@ -1,31 +1,30 @@
 import mongoose from "mongoose";
 
-let bookSchema = new mongoose.Schema(
+let nurseSchema = new mongoose.Schema(
   {
-    title: {
+
+    //email (string), password (string), mobile (string), fullName (string), shift (string)
+    email: {
       type: String,
       required: true,
     },
-    author: {
+    password: {
       type: String,
       required: true,
     },
-    categories: {
+    mobile: {
       type: String,
       required: true,
     },
-    publishYear: {
+    fullName: {
       type: Number,
       required: true,
     },
-    pages: {
+    shift: {
       type: Number,
       required: true,
     },
-  },
-  {
-    timestamps: true,
   }
 );
 
-export default mongoose.model("books", bookSchema, "books");
+export default mongoose.model("nurse",nurseSchema , "nurse");
