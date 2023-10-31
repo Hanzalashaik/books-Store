@@ -34,26 +34,24 @@ let userSchema = new mongoose.Schema(
       maxlength: 100,
       minlength: 4,
     },
-    userverified : {
-      email:{
-        type:Boolean,
-        default:false
+    userverified: {
+      email: {
+        type: Boolean,
+        default: false,
       },
-      phone:{
-        type:Boolean,
-        default:false
-      }
+      phone: {
+        type: Boolean,
+        default: false,
+      },
     },
-    userverifytoken:{
-      email:{
-        type:String,
-    
+    userverifytoken: {
+      email: {
+        type: String,
       },
-      phone:{
-        type:String,
-     
-      }
-    }
+      phone: {
+        type: String,
+      },
+    },
   },
   {
     timestamps: true,

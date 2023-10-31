@@ -1,5 +1,5 @@
 import config from "config";
-import Twilio, { Twilio } from "twilio";
+import Twilio from "twilio";
 
 let { SID, TOKEN, NUMBER } = config.get("SEND_SMS");
 

@@ -4,7 +4,7 @@ const userRegisterValidations = () => {
     return [
         body("firstName", "First Name is required &&  > 2 char").isLength({ min: 2, max: 15 }),
 
-        body("lastName", "Last Name is Required").notEmpty().isLength({ min: 2, max: 15 }),
+        body("lastName", "Last Name is Required").notEmpty().isLength({ min: 2, max: 15 }).withMessage("Length should be <2 and >15"),
 
         body("email", "Should be a Valid Email").isEmail(),
 
