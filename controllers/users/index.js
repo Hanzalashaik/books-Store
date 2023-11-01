@@ -2,15 +2,17 @@ import express from "express";
 import bcrypt from "bcrypt";
 import config from "config";
 import jwt from "jsonwebtoken";
+import CryptoJS from "crypto-js";
 
-import sendSMS from "../../utils/sms.js";
+import authMiddleware from "../../middleware/users/authMiddleware.js";
+// import sendSMS from "../../utils/sms.js";
 import randomString from "../../utils/randomString.js";
 import userModel from "../../models/Users/Users.js";
 import {
   userRegisterValidations,
   errorMiddelware,
 } from "../../middleware/users/index.js";
-import c from "config";
+
 
 const router = express.Router();
 
@@ -73,8 +75,12 @@ router.post(
       console.log(`${config.get("URL")}/user/email/verify/${emailToken}`);
 
       // sendSMS({
-      //   body: `Hi ${userData.firstName}, Please click the given link to verify your phone ${config.get("URL")}/phone/verify/${tokenPhone}`,
-      //   phonenumber:userData.phone,
+      //   body: `Hi ${
+      //     userData.firstName
+      //   }, Please click the given link to verify your phone ${config.get(
+      //     "URL"
+      //   )}/user/phone/verify/${phoneToken}`,
+      //   phonenumber: userData.phone,
       // });
 
       console.log(`${config.get("URL")}/user/phone/verify/${phoneToken}`);
@@ -151,5 +157,51 @@ router.get("/phone/verify/:token", async (req, res) => {
     res.status(500).json({ sucess: false, msg: "Internel Server Error" });
   }
 });
+
+router.post("/login",async (req,res)=>{
+  try {
+    let {email,password}=req.body;
+    let emailFound=await userModel.find({email});
+    
+    if(!emailFound){
+      return res.status(400).json({msg:"Please Register"});
+    }
+
+    let passwordFound=await userModel.find({password});
+    if(!passwordFound){
+      return res.status(400).json({msg:"Incorrect Password"});
+    }
+
+    let jwtsignToken =jwt.sign({email},config.get("JWTKEY"),{expiresIn:"60000"});
+
+    let encryptedToken=CryptoJS.AES.encrypt(jwtsignToken,config.get("CRYPTOKEY")).toString();
+   
+    if(!encryptedToken){
+      res.status(201).json({msg:"Token Expire"})
+    }
+    res.status(201).json({msg:"LoggedIn Sucessfully",encryptedToken})
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ sucess: false, msg: "Internel Server Error" });
+  }
+})
+
+//Get all
+router.get("/getall",async(req,res)=>{
+  try {
+   let userData=await userModel.find({});
+  res.status(200).json(userData);
+  } catch (error) {
+    res.status(500).json({ sucess: false, msg: "Internel Server Error" });
+  }
+})
+
+
+
+//Update by ID 
+//Delete by ID
+//Delete all
+//Get By ID
 
 export default router;

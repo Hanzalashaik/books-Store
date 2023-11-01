@@ -7,7 +7,7 @@ const client = new Twilio(SID, TOKEN);
 
 export default async function sendSMS(smsData) {
   try {
-    await client.sendSMS.create({
+    await client.messages.create({
       body: smsData.body,
       to: smsData.phonenumber,
       from: NUMBER,

@@ -3,36 +3,22 @@ import mongoose from "mongoose";
 let userSchema = new mongoose.Schema(
   {
     firstName: {
-      type: String,
-      required: true,
-      maxlength: 15,
-      minlength: 2,
+      type: String
     },
     lastName: {
-      type: String,
-      required: true,
-      maxlength: 15,
-      minlength: 2,
+      type: String
     },
     phone: {
-      type: String,
-      required: true,
-      unique: true,
+      type: String
     },
     email: {
-      type: String,
-      required: true,
-      unique: true,
+      type: String
     },
     password: {
-      type: String,
-      required: true,
+      type: String
     },
     address: {
-      type: String,
-      required: true,
-      maxlength: 100,
-      minlength: 4,
+      type: String
     },
     userverified: {
       email: {
@@ -42,7 +28,7 @@ let userSchema = new mongoose.Schema(
       phone: {
         type: Boolean,
         default: false,
-      },
+      }
     },
     userverifytoken: {
       email: {
@@ -50,8 +36,8 @@ let userSchema = new mongoose.Schema(
       },
       phone: {
         type: String,
-      },
-    },
+      }
+    }
   },
   {
     timestamps: true,

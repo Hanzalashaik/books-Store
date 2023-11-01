@@ -3,6 +3,7 @@ import express from "express";
 import "./utils/dbconnect.js";
 
 import userRouter from "./controllers/users/index.js"
+import authMiddleware from "./middleware/users/authMiddleware.js";
 
 const PORT = config.get("PORT");
 
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello Server is Running 🚀");
 });
 
+app.use(authMiddleware);
 app.use("/user",userRouter);
 
 //error handler
