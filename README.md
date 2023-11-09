@@ -10,7 +10,7 @@ An Express Application for Book Store, So Basically we are going to create a Bac
 
 ## To Install and Test
 ```bash
-git clone git@github.com:codewithfaizan/Book-Store.git
+git clone git@github.com:Hanzalashaik/books-Store.git
 cd Book-Store
 npm install
 npm start
