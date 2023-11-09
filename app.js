@@ -2,6 +2,7 @@ import config from "config";
 import express from "express";
 import "./utils/dbconnect.js";
 
+import publicRouter from "./controllers/public/user/index.js"
 import userRouter from "./controllers/users/index.js"
 import authMiddleware from "./middleware/users/authMiddleware.js";
 
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello Server is Running 🚀");
 });
 
+app.use("/public",publicRouter);
 app.use(authMiddleware);
 app.use("/user",userRouter);
 
