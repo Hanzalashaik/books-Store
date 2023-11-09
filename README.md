@@ -3,6 +3,10 @@
 ### About the Project 
 An Express Application for Book Store, So Basically we are going to create a Backend for our Book Store, We will be storing our Book details into the Database, retrieving one or all the Books from the Book Store, modifying a book in the Book Store, Deleting one or all the Books in the Book Store. We are going to perform all the CRUD Operations.
 
+### Express Book Store Backend with Authentication and Authorization
+
+This project is an Express.js application designed to serve as the backend for a book store. The application supports CRUD operations for managing book details stored in a database. Users can retrieve information about individual books or get a list of all books, modify book details, and delete specific books or clear the entire book store. In addition to these operations, the project includes robust authentication and authorization mechanisms to ensure secure access to the book store functionalities. The authentication system verifies user identities, while authorization controls access to specific CRUD operations based on user roles or permissions. This comprehensive backend solution provides a foundation for building a secure and feature-rich book store application.
+
 <b><i>Note</i></b>: It is a Complete Backend Application using Node.js, Express Server and MongoDB Database.
 
 <i>Tags - </i>
